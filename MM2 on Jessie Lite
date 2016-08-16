@@ -14,23 +14,23 @@ npm install
 cp /config/config.js.sample /config/config.js
 cd ..
 sudo nano /boot/config.txt
-add        "display_rotate=3"     (without "") (optional: this line rotate you screen"
-	         "avoid_warnings=1"     (without "")
+add        "display_rotate=3"     (without "") (optional: this line rotate you screen)
+	   "avoid_warnings=1"     (without "")
 sudo npm install -g pm2 
 sudo su -c "env PATH=$PATH:/usw/bin pm2 startup linux -u pi --hp /home/pi"
 pm2 startup
 cd ~
 nano mm.sh
 add   	"cd ~/MagicMirror"        (without "")
-	    	"DISPLAY=:0 npm start"    (without "")
+	"DISPLAY=:0 npm start"    (without "")
 chmod +x mm.sh
 pm2 start mm.sh
 pm2 save
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
-add 	  "@xset s noblank"	(without "")
-		    "@xset s off"		  (without "")
-		    "@xset -dpms"		  (without "")
+add 	 "@xset s noblank"	(without "")
+	 "@xset s off"		(without "")
+	 "@xset -dpms"		(without "")
 sudo nano /etc/lightdm/lightdm.conf
-		"xserver-command=X -s 0 -dpms"	(without "")
+	"xserver-command=X -s 0 -dpms"	(without "")
 sudo reboot
 (Finisch)
