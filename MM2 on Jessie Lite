@@ -1,0 +1,36 @@
+With a clean installation:
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install lxde-core
+sudo apt-get install lightdm
+sudo apt-get install git
+sudo apt-get install libxss1
+sudo apt-get install libnss
+sudo apt-get install unclutter
+curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installers/raspberry.sh | bash
+cd ~/MagicMirror
+npm install
+cp /config/config.js.sample /config/config.js
+cd ..
+sudo nano /boot/config.txt
+add        "display_rotate=3"     (without "") (optional: this line rotate you screen"
+	         "avoid_warnings=1"     (without "")
+sudo npm install -g pm2 
+sudo su -c "env PATH=$PATH:/usw/bin pm2 startup linux -u pi --hp /home/pi"
+pm2 startup
+cd ~
+nano mm.sh
+add   	"cd ~/MagicMirror"        (without "")
+	    	"DISPLAY=:0 npm start"    (without "")
+chmod +x mm.sh
+pm2 start mm.sh
+pm2 save
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+add 	  "@xset s noblank"	(without "")
+		    "@xset s off"		  (without "")
+		    "@xset -dpms"		  (without "")
+sudo nano /etc/lightdm/lightdm.conf
+		"xserver-command=X -s 0 -dpms"	(without "")
+sudo reboot
+(Finisch)
